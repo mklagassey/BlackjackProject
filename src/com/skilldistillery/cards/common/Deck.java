@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Deck {
-
+	private boolean shuffled = false;
 	private List<Card> deck;
 
 	// Where the magic happens
@@ -18,6 +18,14 @@ public class Deck {
 		}
 	}
 	
+	public boolean isShuffled() {
+		return shuffled;
+	}
+
+	public void setShuffled(boolean status) {
+		this.shuffled = status;
+	}
+
 	public int checkDeckSize() {
 		if (deck == null) {
 			return -1;
@@ -35,5 +43,6 @@ public class Deck {
 	
 	public void shuffle() {
 		Collections.shuffle(deck);
+		setShuffled(true);
 	}
 }
