@@ -34,8 +34,6 @@ public class BlackjackApp {
 		System.out.println("Welcome to Blackjack!");
 
 		while (keepPlaying) {
-//			List<Card> hand = new ArrayList<>();
-//			System.out.println("How many cards do you want?");
 
 			// Dealer shuffles deck if not already shuffled
 			if (playDeck.isShuffled() == false) {
@@ -45,11 +43,7 @@ public class BlackjackApp {
 			for (Player player : table) {
 				dealer.dealCard(playDeck, player);
 			}
-			
-			// Dealer deals 1 card to itself, displayed (down)
-			// Dealer deals 1 card to each player, hands showing are updated
-			// Dealer deals 1 card to itself, displayed up
-			// Dealer deals 1 card to each player
+			// and second card
 			for (Player player : table) {
 				dealer.dealCard(playDeck, player);
 			}
@@ -57,40 +51,54 @@ public class BlackjackApp {
 			for (Player player : table) {
 				player.showCards();
 				player.showScore();
+				// checks for blackjack
+				if (player.getScore() == 21) {
+					System.out.println("BLACKJACK, " + player.toString() + " WINS!");
+					break;
+				}
+				if (player.getScore() > 21) {
+					System.out.println(player.toString() +" busted!");
+					break;
+				}
 			}
-			if (human.getScore() == 21) {
-				System.out.println("BLACKJACK, YOU WIN!");
-				break;
-			} else if (human.getScore() > 21) {
-				System.out.println("Busted, you lose!");
-			}
+			// Checks for bust
 			// Dealer asks each player if they want to hit or stay
-			dealer.askPlayerHitOrStay(playDeck, human);
-			human.showCards();
-			human.showScore();
-			if (human.getScore() == 21) {
-				System.out.println("BLACKJACK, YOU WIN!");
-				break;
-			} else if (human.getScore() > 21) {
-				System.out.println("Busted, you lose!");
+			// TODO - put in loop, break when player stays or busts
+			boolean hit = true;
+			boolean playerBust = false;
+			
+			while (hit) {
+				hit = dealer.askPlayerHitOrStay(playDeck, human);
+				human.showCards();
+				human.showScore();
+				// check for bust
+				if (human.getScore() > 21) {
+					System.out.println("Busted, you lose!");
+					playerBust = true;
+					break;
+				}
 			}
 			// Dealers turn to hit or stay
+			// TODO put inside loop, break when dealer stays or busts
+			if (!playerBust) {
+				
 			dealer.checkHandToHit(playDeck, dealer);
-			if (dealer.getScore() == 21) {
-				System.out.println("BLACKJACK, dealer wins!");
-				break;
-			} else if (dealer.getScore() > 21) {
-				System.out.println("Dealer busted, you win!");
-			}
 			dealer.showCards();
 			dealer.showScore();
+		
+			if (dealer.getScore() > 21) {
+				System.out.println("Dealer busted, you win!");
+				break;
+				}
 			
 			// If no win condition yet, compare each player hand to dealer, winner = high score
-			if (dealer.getScore() > human.getScore()) {
+			// TODO include all players
+			else if (dealer.getScore() > human.getScore()) {
 				System.out.println("You lose, dealer wins with " + dealer.getScore());
 			} else {
 				System.out.println("You win! Your " + human.getScore() + 
 						" beats the dealers " + dealer.getScore());
+			}
 			}
 			try {
 				System.out.println();

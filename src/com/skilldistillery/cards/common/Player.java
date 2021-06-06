@@ -22,7 +22,7 @@ public abstract class Player {
 	
 	public abstract void showScore();
 
-	public abstract void play();
+	public abstract int getScore();
 	
 	public abstract void quit();
 	

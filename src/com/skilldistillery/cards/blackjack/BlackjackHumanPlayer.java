@@ -28,12 +28,6 @@ public class BlackjackHumanPlayer extends Player{
 	}
 
 	@Override
-	public void play() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void quit() {
 		// TODO Auto-generated method stub
 		
