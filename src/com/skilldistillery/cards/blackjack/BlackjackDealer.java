@@ -11,6 +11,8 @@ public class BlackjackDealer extends Player {
 	Scanner input = new Scanner(System.in);
 	private BlackjackHand hand = new BlackjackHand();
 	private boolean hideFirstCard = true;
+	private String name = "Dealer";
+	private boolean busted = false;
 
 	public BlackjackDealer() {
 
@@ -48,6 +50,8 @@ public class BlackjackDealer extends Player {
 			System.out.println("Dealers score: ???");
 		} else {
 			System.out.println("Dealers score: " + hand.getHandValue());
+			System.out.println("<----------------------------------->");
+
 		}
 	}
 
@@ -65,13 +69,12 @@ public class BlackjackDealer extends Player {
 			char first = playerInput.charAt(0);
 			if (first == 'h' || first == 'H') {
 				this.dealCard(deck, player);
-				System.out.println("Here is your card...");
+				System.out.println("Here's your card...");
 				break;
 			} else if (first == 's' || first == 'S') {
 				hit = false;
 			} else {
-				System.out.println("Sorry, I didn't understand that." 
-			+ "Please choose hit (h) or stay (s)");
+				System.out.println("Sorry, I didn't understand that.\n" + "Please choose hit (h) or stay (s)");
 				continue;
 			}
 		} while (hit);
@@ -92,15 +95,37 @@ public class BlackjackDealer extends Player {
 		hideFirstCard = show;
 	}
 
-	public void returnCardsToDeck() {
-		// TODO Auto-generated method stub
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append(name);
+		return builder.toString();
+	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public boolean isBusted() {
+		return busted;
+	}
+
+	public void setBusted(boolean busted) {
+		this.busted = busted;
+	}
+
+	public void resetHand() {
+		this.hand = new BlackjackHand();
 	}
 
 	@Override
-	public void quit() {
+	public boolean quitOrPlay() {
 		// TODO Auto-generated method stub
-
+		return false;
 	}
 
 }

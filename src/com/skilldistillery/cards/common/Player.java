@@ -5,6 +5,7 @@ import java.util.Collection;
 public abstract class Player {
 	
 	protected Collection<Card> hand;
+	protected String name;
 	
 	
 	
@@ -24,7 +25,13 @@ public abstract class Player {
 
 	public abstract int getScore();
 	
-	public abstract void quit();
+	public abstract boolean quitOrPlay();
+
+	public abstract String getName();
+
+	public abstract void setName(String name);
+
+	public abstract void resetHand();
 	
 	
 }
