@@ -2,7 +2,7 @@ package com.skilldistillery.cards.common;
 
 public enum Suit {
 	
-	HEARTS("Hearts"), SPADES("Spades"), CLUBS("Clubs"), DIAMONDS("Diamonds");
+	HEARTS("♥"), SPADES("♠"), CLUBS("♣"), DIAMONDS("♦");
 	
 	private String name;
 	

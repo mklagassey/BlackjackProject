@@ -23,9 +23,15 @@ public abstract class Hand {
 	}
 		
 	public void showHand(int begin, int end) {
+		String line = "*";
+		ArrayList<String> vizcard = new ArrayList<>();
 		for (int i = begin; i < end; i++) {
-			System.out.println(hand.get(i));
-		}		
+			vizcard = hand.get(i).toArray();
+			for (String string : vizcard) {
+				line += string;
+			}
+		}
+		System.out.println(line);
 	}
 	
 }

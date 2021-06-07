@@ -1,5 +1,8 @@
 package com.skilldistillery.cards.common;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Card {
 
 	private Suit suit;
@@ -43,6 +46,21 @@ public class Card {
 		builder.append(" of ");
 		builder.append(suit);
 		return builder.toString();
+	}
+	
+	public ArrayList<String> toArray() {
+		ArrayList<String> visualCard = new ArrayList<>();
+		visualCard.add("┌─────────┐\n"); 
+		visualCard.add(" │" + rank.getValue() + "       │\n");
+		visualCard.add(" │         │\n");
+		visualCard.add(" │    " + suit + "    │\n");
+		visualCard.add(" │         │\n");
+		visualCard.add(" │         │\n");
+		visualCard.add(" │       " + rank.getValue() + "│\n");
+		visualCard.add(" └─────────┘\n");
+		
+		
+		return visualCard;
 	}
 	
 	public int getValue() {
